@@ -49,10 +49,6 @@ export class DroppableDirective implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // DEVONLY
-    console.log('Destroyed - DroppableDirective');
-    // END DEVONLY
-
     // Remove zone
     this.dragService.removeAvailableZone(this.options.zone);
 
