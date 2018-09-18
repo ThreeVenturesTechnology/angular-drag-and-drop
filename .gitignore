@@ -1,0 +1,8 @@
+# MacOS
+.DS_Store
+
+# Intellij
+.idea
+
+# Node
+drag-and-drop/node_modules

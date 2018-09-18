@@ -1,0 +1,51 @@
+*, *:after, *:before{
+  box-sizing: content-box;
+}
+
+.app-droppable{
+  width: 200px;
+  height: 500px;
+  background-color: #f0f0f0;
+  display: inline-block;
+  margin: 0 30px;
+  padding: 15px;
+  border-radius: 4px;
+  position: relative;
+  vertical-align: middle;
+}
+
+.app-droppable:after {
+  content: '';
+  display: block;
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.app-draggable{
+  padding: 15px;
+  background-color: white;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,.15);
+  margin-bottom: 15px;
+}
+
+.js-app-droppable--target:after,
+.js-app-droppable--zone:after{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-width: 2px;
+  border-style: dashed;
+}
+
+.js-app-droppable--target:after{
+  border-color: #b6faff;
+  background-color: #f0feff;
+}
+
+.js-app-droppable--zone:after{
+  border-color: #85ca7f;
+  background-color: #ebffe8;
+}

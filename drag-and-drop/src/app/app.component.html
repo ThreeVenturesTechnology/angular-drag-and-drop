@@ -1,0 +1,17 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Drag and Drop
+  </h1>
+  <ng-container *ngFor="let dropZone of droppableObjects; let i = index;">
+    <div [appDroppable]="dropZone"
+         (onDroppableComplete)="onZoneDrop($event)">
+       <ng-container *ngFor="let draggableElement of draggableObjects[i]; let j = index;">
+         <div [appDraggable]="draggableElement">
+            {{draggableElement.data.name}}
+         </div>
+       </ng-container>
+    </div>
+  </ng-container>
+</div>
+
