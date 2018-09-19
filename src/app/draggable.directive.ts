@@ -48,8 +48,7 @@ export class DraggableDirective implements OnInit, OnDestroy {
   /**
    * @desc responsible for adding the drag events to the directive
    * @note transfers drag data using the Drag and Drop API (Browser)
-   * @note known CSS issue where a draggable element cursor cant be set
-   * while dragging in Chrome
+   * @note known CSS issue where a draggable element cursor cant be set while dragging in Chrome
    */
   // 6
   private addDragEvents(): void {
