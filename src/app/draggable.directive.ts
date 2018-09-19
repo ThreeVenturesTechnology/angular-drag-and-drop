@@ -15,7 +15,6 @@ export class DraggableDirective implements OnInit, OnDestroy {
   // Options for the directive
   private options: DraggableOptions;
 
-  // Allow options input by using [appDraggable]='{}'
   // 2
   @Input()
   set appDraggable(options: DraggableOptions) {
@@ -28,7 +27,6 @@ export class DraggableDirective implements OnInit, OnDestroy {
     , private renderer: Renderer2
     , private dragService: DragService) {
     // 3
-    // Set the draggable property
     this.renderer.setProperty(this.elementRef.nativeElement, 'draggable', true);
     this.renderer.addClass(this.elementRef.nativeElement, 'app-draggable');
   }
@@ -74,7 +72,7 @@ export class DraggableDirective implements OnInit, OnDestroy {
   }
 }
 
-// Export the interface for use throughout the application
+// 9
 export interface DraggableOptions {
   zones?: Array<string>;
   data?: any;
