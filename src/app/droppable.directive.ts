@@ -1,23 +1,23 @@
 import {Directive, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, Renderer2} from '@angular/core';
 import {DragService} from './drag.service';
 
+// 1
 @Directive({
   selector: '[appDroppable]'
 })
-export class DroppableDirective implements OnInit, OnDestroy {
 
-  // Events
+export class DroppableDirective implements OnInit, OnDestroy {
   private onDragEnter: Function;
   private onDragLeave: Function;
   private onDragOver: Function;
   private onDrop: Function;
 
-  // Options for the directive
   public options: DroppableOptions = {
     zone: 'appZone'
   };
 
   // Allow options input by using [appDroppable]='{}'
+  // 2
   @Input()
   set appDroppable(options: DroppableOptions) {
     if (options) {
@@ -28,12 +28,14 @@ export class DroppableDirective implements OnInit, OnDestroy {
   // Drop Event Emitter
   @Output() public onDroppableComplete: EventEmitter<DroppableEventObject> = new EventEmitter();
 
+  // 3
   constructor(private elementRef: ElementRef
     , private renderer: Renderer2
     , private dragService: DragService) {
     this.renderer.addClass(this.elementRef.nativeElement, 'app-droppable');
   }
 
+  // 4
   ngOnInit() {
     // Add available zone
     // This exposes the zone to the service so a draggable element can update it
@@ -48,6 +50,7 @@ export class DroppableDirective implements OnInit, OnDestroy {
     this.addOnDragEvents();
   }
 
+  // 5
   ngOnDestroy() {
     // Remove zone
     this.dragService.removeAvailableZone(this.options.zone);
@@ -62,6 +65,7 @@ export class DroppableDirective implements OnInit, OnDestroy {
   /**
    * @desc responsible for adding the drag events
    */
+  // 6
   private addOnDragEvents(): void {
     // Drag Enter
     this.onDragEnter = this.renderer.listen(
@@ -96,6 +100,7 @@ export class DroppableDirective implements OnInit, OnDestroy {
    * @desc responsible for handling the dragenter event
    * @param event
    */
+  // 7
   private handleDragEnter(event: DragEvent): void {
     if (this.dragService.accepts(this.options.zone)) {
       // Prevent default to allow drop
@@ -109,6 +114,7 @@ export class DroppableDirective implements OnInit, OnDestroy {
    * @desc responsible for handling the dragleave event
    * @param event
    */
+  // 8
   private handleDragLeave(event: DragEvent): void {
     if (this.dragService.accepts(this.options.zone)) {
       // Remove styling
@@ -117,9 +123,10 @@ export class DroppableDirective implements OnInit, OnDestroy {
   }
 
   /**
-   * @desc responsible for handling the dragenter event
+   * @desc responsible for handling the dragOver event
    * @param event
    */
+  // 9
   private handleDragOver(event: DragEvent): void {
     if (this.dragService.accepts(this.options.zone)) {
       // Prevent default to allow drop
@@ -131,6 +138,7 @@ export class DroppableDirective implements OnInit, OnDestroy {
    * @desc responsible for handling the drop event
    * @param event
    */
+  // 10
   private handleDrop(event: DragEvent): void {
     // Remove styling
     this.dragService.removeHighLightedAvailableZones();
@@ -144,7 +152,7 @@ export class DroppableDirective implements OnInit, OnDestroy {
   }
 }
 
-// Export the interface for use throughout the application
+// 11
 export interface DroppableOptions {
   data?: any;
   zone?: string;
