@@ -1,6 +1,7 @@
 import {Directive, ElementRef, Input, OnDestroy, OnInit, Renderer2} from '@angular/core';
 import {DragService} from './drag.service';
 
+// 1
 @Directive({
   selector: '[appDraggable]'
 })
@@ -15,7 +16,7 @@ export class DraggableDirective implements OnInit, OnDestroy {
   private options: DraggableOptions;
 
   // Allow options input by using [appDraggable]='{}'
-  // This is a typescript accessor for setting a value
+  // 2
   @Input()
   set appDraggable(options: DraggableOptions) {
     if (options) {
@@ -26,16 +27,18 @@ export class DraggableDirective implements OnInit, OnDestroy {
   constructor(private elementRef: ElementRef
     , private renderer: Renderer2
     , private dragService: DragService) {
-
-    // Se the draggable property
+    // 3
+    // Set the draggable property
     this.renderer.setProperty(this.elementRef.nativeElement, 'draggable', true);
     this.renderer.addClass(this.elementRef.nativeElement, 'app-draggable');
   }
 
+  // 4
   ngOnInit() {
     this.addDragEvents();
   }
 
+  // 5
   ngOnDestroy() {
     // Remove events
     this.onDragStart();
@@ -48,7 +51,9 @@ export class DraggableDirective implements OnInit, OnDestroy {
    * @note known CSS issue where a draggable element cursor cant be set
    * while dragging in Chrome
    */
+  // 6
   private addDragEvents(): void {
+    // 7
     this.onDragStart = this.renderer.listen(
       this.elementRef.nativeElement
       , 'dragstart'
