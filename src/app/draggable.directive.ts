@@ -64,6 +64,7 @@ export class DraggableDirective implements OnInit, OnDestroy {
             , JSON.stringify(this.options.data));
       });
 
+    // 8
     this.onDragEnd = this.renderer.listen(
       this.elementRef.nativeElement
       , 'dragend'
